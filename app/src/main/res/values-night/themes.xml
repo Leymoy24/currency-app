@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CurrencyApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/back_primary</item>
+        <item name="colorPrimaryVariant">@color/color_gray</item>
+        <item name="colorOnPrimary">@color/label_primary</item>
+
+        <item name="colorSecondary">@color/back_secondary</item>
+        <item name="colorSecondaryVariant">@color/color_blue</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorTertiary">@color/color_gray</item>
+
+        <item name="android:statusBarColor">@color/back_primary</item>
+
+        <item name="android:textViewStyle">@color/label_primary</item>
+        <item name="android:navigationBarColor">@color/back_primary</item>
+    </style>
+</resources>
