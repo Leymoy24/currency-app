@@ -3,6 +3,7 @@ package com.example.currencyapp.ui
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,11 +28,9 @@ class MainFragment : Fragment() {
     private lateinit var adapter: MainAdapter
     private lateinit var viewModel: MainViewModel
     private lateinit var networkConnection: NetworkConnection
-    private lateinit var currentDate: String
 
     private val handler = Handler()
     private var progressBarListener: ProgressBarListener? = null
-    private val sdf = SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -101,10 +100,9 @@ class MainFragment : Fragment() {
                 binding.recyclerView.adapter = adapter
                 binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
 
-                currentDate = sdf.format(Date())
-                binding.textLastRequest.text = getString(R.string.time_last_request, currentDate)
+                binding.textLastRequest.text = getString(R.string.time_last_request, formatCurrentDate())
                 binding.textRelevance.text =
-                    getString(R.string.recent_changes_server, formatDate(list.body()?.Timestamp.toString()))
+                    getString(R.string.recent_changes_server, formatInputDate(list.body()?.Timestamp.toString()))
             } ?: run {
                 progressBarListener?.showProgressBar(false)
                 Toast.makeText(requireContext(),
@@ -124,11 +122,31 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun formatDate(dateR: String): String {
+    private fun formatInputDate(inputDate: String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
-        val date: Date = inputFormat.parse(dateR)!!
-        val outputFormat = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
+        val date: Date = inputFormat.parse(inputDate)!!
+        val is24HourFormat = DateFormat.is24HourFormat(context)
+
+        val outputFormat = if (is24HourFormat) {
+            SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
+        } else {
+            SimpleDateFormat("dd.MM.yyyy hh:mm:ss a", Locale.getDefault())
+        }
+
         return outputFormat.format(date)
+    }
+
+    private fun formatCurrentDate(): String {
+        val currentTime = System.currentTimeMillis()
+        val is24HourFormat = DateFormat.is24HourFormat(context)
+
+        val outputFormat = if (is24HourFormat) {
+            SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
+        } else {
+            SimpleDateFormat("dd.MM.yyyy hh:mm:ss a", Locale.getDefault())
+        }
+
+        return outputFormat.format(currentTime)
     }
 
     override fun onDestroyView() {
