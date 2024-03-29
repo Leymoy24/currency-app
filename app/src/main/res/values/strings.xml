@@ -8,4 +8,6 @@
     <string name="recent_changes_server">Последние изменения на сервере: %1$s</string>
     <string name="data_upload_error">Ошибка загрузки данных!</string>
     <string name="must_implement_progressbar">%1$s must implement ProgressBarListener</string>
+    <string name="current_price">Текущая цена: \u0020</string>
+    <string name="previous_price">Предыдущая цена: \u0020</string>
 </resources>

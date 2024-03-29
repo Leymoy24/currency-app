@@ -1,6 +1,5 @@
 package com.example.currencyapp.ui
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +47,6 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setList(currencyObject: CurrenciesObject<Double>) {
         val currencyList = currencyObject.Valute.values.map { currency ->
             CurrencyModel(
@@ -59,6 +57,6 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
             )
         }
         listItems = currencyList
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0, itemCount)
     }
 }

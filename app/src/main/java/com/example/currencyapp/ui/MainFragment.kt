@@ -90,12 +90,16 @@ class MainFragment : Fragment() {
     private fun loadData() {
         progressBarListener?.showProgressBar(true)
 
+        val recyclerViewState = binding.recyclerView.layoutManager?.onSaveInstanceState()
+        adapter.notifyItemRangeChanged(0, adapter.itemCount)
+
         viewModel.getCurrency()
         viewModel.listCurrency.observe(viewLifecycleOwner) { list ->
             list.body()?.let {
                 progressBarListener?.showProgressBar(false)
                 adapter.setList(it)
                 binding.recyclerView.adapter = adapter
+                binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
 
                 currentDate = sdf.format(Date())
                 binding.textLastRequest.text = getString(R.string.time_last_request, currentDate)
