@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.currencyapp.R
@@ -19,6 +20,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         var textCharCode: TextView = itemView.findViewById(R.id.textCharCode)
         var textValue: TextView = itemView.findViewById(R.id.textValue)
         var textPreviousValue: TextView = itemView.findViewById(R.id.textPreviousValue)
+        var imageViewArrow: ImageView = itemView.findViewById(R.id.imageViewArrow)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -36,18 +38,27 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         holder.textCharCode.text = item.charCode
         "${item.value} ₽".also { holder.textValue.text = it }
         "${item.previous} ₽".also { holder.textPreviousValue.text = it }
+
+        if (item.value > item.previous) {
+            holder.imageViewArrow.setImageResource(R.drawable.arrow_top_icon)
+        } else if (item.value < item.previous) {
+            holder.imageViewArrow.setImageResource(R.drawable.arrow_bottom_icon)
+        } else {
+            holder.imageViewArrow.visibility = View.GONE
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(currencyObject: CurrenciesObject<Double>) {
-        currencyObject.Valute.values.map { currency ->
+        val currencyList = currencyObject.Valute.values.map { currency ->
             CurrencyModel(
                 name = currency.Name,
                 charCode = currency.CharCode,
-                value = String.format("%.2f", currency.Value).toDouble(),
-                previous = String.format("%.2f", currency.Previous).toDouble()
+                value = currency.Value,
+                previous = currency.Previous
             )
-        }.also { listItems = it }
+        }
+        listItems = currencyList
         notifyDataSetChanged()
     }
 }

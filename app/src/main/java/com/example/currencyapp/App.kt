@@ -11,11 +11,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         appContext = applicationContext
-        networkConnection = NetworkConnection(appContext)
     }
 
     companion object {
         lateinit var appContext: Context
-        lateinit var networkConnection: NetworkConnection
     }
 }

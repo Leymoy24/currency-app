@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.MainFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.MainFragment">
 
     <TextView
         android:id="@+id/textLastRequest"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="2dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textRelevance"
@@ -21,22 +21,30 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="2dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textNoConnection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/no_internet_connection"
         android:gravity="center"
         android:padding="2dp"
+        android:paddingBottom="2dp"
+        android:text="@string/no_internet_connection"
         android:textColor="@color/color_red"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>
