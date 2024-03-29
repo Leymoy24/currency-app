@@ -1,4 +1,4 @@
-package com.example.currencyapp.model
+package com.example.currencyapp.ui.model
 
 data class CurrencyModel(
     val name: String,

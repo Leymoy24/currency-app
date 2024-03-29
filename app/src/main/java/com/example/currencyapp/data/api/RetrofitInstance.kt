@@ -1,6 +1,5 @@
 package com.example.currencyapp.data.api
 
-import com.example.currencyapp.App
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,7 +9,6 @@ object RetrofitInstance {
 
     private val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     private val okHttpClient = OkHttpClient.Builder()
-//        .addInterceptor(NetworkConnectionInterceptor(App.appContext))
         .addInterceptor(logger)
         .build()
 

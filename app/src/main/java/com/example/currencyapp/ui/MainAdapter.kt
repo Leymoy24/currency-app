@@ -1,15 +1,14 @@
-package com.example.currencyapp
+package com.example.currencyapp.ui
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.currencyapp.R
 import com.example.currencyapp.data.api.model.CurrenciesObject
-import com.example.currencyapp.data.api.model.Currency
-import com.example.currencyapp.model.CurrencyModel
+import com.example.currencyapp.ui.model.CurrencyModel
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 

@@ -11,7 +11,6 @@
         android:id="@+id/textLastRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Время последнего запроса: 18:00"
         android:gravity="center"
         android:padding="2dp"
         android:visibility="gone"/>
@@ -20,9 +19,18 @@
         android:id="@+id/textRelevance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Последнее обновление на сервере: 18:00"
         android:gravity="center"
         android:padding="2dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/textNoConnection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_internet_connection"
+        android:gravity="center"
+        android:padding="2dp"
+        android:textColor="@color/color_red"
         android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView

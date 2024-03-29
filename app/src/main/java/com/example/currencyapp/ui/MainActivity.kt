@@ -1,11 +1,10 @@
-package com.example.currencyapp
+package com.example.currencyapp.ui
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.currencyapp.R
 import com.example.currencyapp.databinding.ActivityMainBinding
-import com.example.currencyapp.ui.MainFragment
 
 class MainActivity : AppCompatActivity(), MainFragment.ProgressBarListener {
 
